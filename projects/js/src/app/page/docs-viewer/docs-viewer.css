@@ -1,0 +1,14 @@
+:host {
+  display: block;
+}
+
+.doc-page {
+  border: 1px solid var(--border);
+  background-color: var(--surface);
+  padding: 1.25rem 1.5rem;
+}
+
+.error {
+  color: #b91c1c;
+  font-weight: 600;
+}

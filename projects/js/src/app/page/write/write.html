@@ -1,0 +1,27 @@
+<section class="write-page" aria-labelledby="write-title">
+  <header class="write-header">
+    <h1 id="write-title" class="write-title">Write Markdown</h1>
+    <button type="button" class="submit-btn" (click)="submit()">Submit</button>
+  </header>
+
+  <div class="write-layout">
+    <section class="write-pane" aria-label="Markdown editor">
+      <h2 class="pane-title">Editor</h2>
+      <textarea
+        class="markdown-input"
+        [value]="markdown()"
+        (input)="onMarkdownInput($event)"
+        aria-label="Markdown editor"
+      ></textarea>
+    </section>
+
+    <section class="write-pane preview-pane" aria-label="Markdown preview">
+      <h2 class="pane-title">Preview</h2>
+      <article class="markdown-view" [innerHTML]="previewHtml()"></article>
+    </section>
+  </div>
+
+  @if (submitMessage()) {
+    <p class="submit-message" aria-live="polite">{{ submitMessage() }}</p>
+  }
+</section>

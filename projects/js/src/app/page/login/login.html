@@ -1,0 +1,28 @@
+<section class="login-page" aria-labelledby="login-title">
+  <div class="login-card">
+    <h1 id="login-title">Login</h1>
+    <p class="login-subtitle">Continue with your Google account.</p>
+
+    @if (loading()) {
+      <p class="status-text">Loading Google Sign-In...</p>
+    } @else {
+      <div #googleButtonContainer class="google-btn-container" aria-live="polite"></div>
+    }
+
+    @if (error()) {
+      <p class="error-text" aria-live="polite">{{ error() }}</p>
+    }
+
+    @if (user(); as profile) {
+      <div class="user-preview" aria-live="polite">
+        @if (profile.picture) {
+          <img [src]="profile.picture" alt="Profile" class="profile-pic" />
+        }
+        <div>
+          <p class="user-name">{{ profile.name || 'Google user' }}</p>
+          <p class="user-email">{{ profile.email || '' }}</p>
+        </div>
+      </div>
+    }
+  </div>
+</section>
