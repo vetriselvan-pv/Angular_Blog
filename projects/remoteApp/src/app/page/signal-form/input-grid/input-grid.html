@@ -1,14 +1,14 @@
 <form class="input-grid-form">
     <div class="table-container">
         <div class="flex justify-end">
-            <button type="button" class=" border w-20 h-[10] bg-blue-500 text-white border-radius-2xl rounded"
+            <button id="addBtn" type="button" class=" border w-20 h-[10] bg-blue-500 text-white border-radius-2xl rounded"
                 (click)="addRow()">Add</button>
         </div>
         <table class="modern-table">
             <thead>
                 <tr>
                     @for (header of tableHeaders(); track $index) {
-                    <th scope="col">{{ header }}</th>
+                    <th [id]="`header_${$index}`" scope="col">{{ header }}</th>
                     }
                 </tr>
             </thead>
@@ -53,14 +53,14 @@
                         </div>
                     </td>
                     <td>
-                        <button type="button" class="border w-20 h-[10] bg-red-500 text-white border-radius-2xl "
+                        <button type="button" id="removeBtn" class="border w-20 h-[10] bg-red-500 text-white border-radius-2xl "
                             (click)="removeRow($index)">Delete</button>
                     </td>
                 </tr>
                 }
             </tbody>
         </table>
-        <button type="button" class="border w-20 h-[10] bg-blue-500 text-white border-radius-2xl rounded"
+        <button type="button" id="submitBtn" class="border w-20 h-[10] bg-blue-500 text-white border-radius-2xl rounded"
             (click)="printValue()">Submit</button>
     </div>
 
