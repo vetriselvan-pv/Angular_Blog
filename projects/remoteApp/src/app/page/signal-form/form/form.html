@@ -26,6 +26,28 @@
         <small [id]="`dob_error_${error.kind}`" class="error-message">{{ error.message }}</small>
       }
     </div>
+        <div class="form-control">
+      <label for="password">Password</label>
+      <input type="text" id="password" [formField]="personalDetailform.password" />
+      @if (personalDetailform.password().errors() && personalDetailform.password().touched()) {
+        @let error = personalDetailform.password().errors()[0];
+        @if(error){
+        <pre>{{ error }}</pre>
+        <small [id]="`password_error_${error.kind}`" class="error-message">{{ error.message }}</small>
+        }
+      }
+    </div>
+        <div class="form-control">
+      <label for="confirmPassword">Confirm Password</label>
+      <input type="text" id="confirmPassword" [formField]="personalDetailform.confirmPassword" />
+      @if (personalDetailform.confirmPassword().errors() && personalDetailform.confirmPassword().touched()) {
+        @let error = personalDetailform.confirmPassword().errors()[0];
+          @if(error){
+        <pre>{{ error | json }}</pre>
+        <small [id]="`confirmPassword_error_${error.kind}`" class="error-message">{{ error.message }}</small>
+        }
+      }
+    </div>
     <div class="form-control">
       <label for="nickName">Nick Name</label>
       <input type="text" id="nickName" [formField]="personalDetailform.nickName" />

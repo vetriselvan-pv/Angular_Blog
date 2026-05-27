@@ -10,8 +10,12 @@ export const routes: Routes = [
     loadComponent: () => import('./page/signal-form/signal-form').then((m) => m.SignalForm)
   },
   {
+    path: 'periodic-table',
+    loadComponent: () => import('./page/periodic-table/periodic-table').then((m) => m.PeriodicTable)
+  },
+  {
     path : '',
-    redirectTo : '/signal-form',
+    redirectTo : '/periodic-table',
     pathMatch: 'full'
   }
 ];
