@@ -6,6 +6,10 @@ export const routes: Routes = [
     loadComponent: () => import('./page/flag-list/flag-list').then((m) => m.FlagList),
   },
   {
+    path : 'family-tree',
+    loadComponent : () => import('./page/family-tree/family-tree').then((m) => m.FamilyTree)
+  },
+  { 
     path : 'custom-decorator',
     loadComponent : () => import('./page/custom-decorator/custom-decorator').then((m) => m.CustomDecorator)
   },
