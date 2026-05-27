@@ -1,0 +1,59 @@
+<form (submit)="onFormSubmit($event)">
+  <div class="m-5 flex gap-5">
+    <div class="form-control col-md-4">
+      <label for="fullname">Full Name</label>
+      <input type="text" id="fullName" [formField]="personalDetailform.fullName" />
+      @if (personalDetailform.fullName().errors() && personalDetailform.fullName().touched()) {
+        @let error = personalDetailform.fullName().errors()[0];
+        <small [id]="`fullname_error_${error.kind}`" class="error-message">{{
+          error.message
+        }}</small>
+      }
+    </div>
+    <div class="form-control">
+      <label for="age">Age</label>
+      <input type="number" id="age" [formField]="personalDetailform.age" />
+      @if (personalDetailform.age().errors() && personalDetailform.age().touched()) {
+        @let error = personalDetailform.age().errors()[0];
+        <small [id]="`age_error_${error.kind}`" class="error-message">{{ error.message }}</small>
+      }
+    </div>
+    <div class="form-control">
+      <label for="dob">Date of birth</label>
+      <input type="date" id="dob" [formField]="personalDetailform.dob" />
+      @if (personalDetailform.dob().errors() && personalDetailform.dob().touched()) {
+        @let error = personalDetailform.dob().errors()[0];
+        <small [id]="`dob_error_${error.kind}`" class="error-message">{{ error.message }}</small>
+      }
+    </div>
+        <div class="form-control">
+      <label for="password">Password</label>
+      <input type="text" id="password" [formField]="personalDetailform.password" />
+      @if (personalDetailform.password().errors() && personalDetailform.password().touched()) {
+        @let error = personalDetailform.password().errors()[0];
+        @if(error){
+        <pre>{{ error }}</pre>
+        <small [id]="`password_error_${error.kind}`" class="error-message">{{ error.message }}</small>
+        }
+      }
+    </div>
+        <div class="form-control">
+      <label for="confirmPassword">Confirm Password</label>
+      <input type="text" id="confirmPassword" [formField]="personalDetailform.confirmPassword" />
+      @if (personalDetailform.confirmPassword().errors() && personalDetailform.confirmPassword().touched()) {
+        @let error = personalDetailform.confirmPassword().errors()[0];
+          @if(error){
+        <pre>{{ error | json }}</pre>
+        <small [id]="`confirmPassword_error_${error.kind}`" class="error-message">{{ error.message }}</small>
+        }
+      }
+    </div>
+    <div class="form-control">
+      <label for="nickName">Nick Name</label>
+      <input type="text" id="nickName" [formField]="personalDetailform.nickName" />
+    </div>
+  </div>
+  <div class="text-center">
+    <button id="btnSubmit" class="text-end" type="submit">Submit</button>
+  </div>
+</form>

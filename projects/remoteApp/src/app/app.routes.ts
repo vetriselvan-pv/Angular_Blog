@@ -8,5 +8,18 @@ export const routes: Routes = [
   {
     path : 'custom-decorator',
     loadComponent : () => import('./page/custom-decorator/custom-decorator').then((m) => m.CustomDecorator)
+  },
+  {
+    path: 'signal-form',
+    loadComponent: () => import('./page/signal-form/signal-form').then((m) => m.SignalForm)
+  },
+  {
+    path: 'periodic-table',
+    loadComponent: () => import('./page/periodic-table/periodic-table').then((m) => m.PeriodicTable)
+  },
+  {
+    path : '',
+    redirectTo : '/periodic-table',
+    pathMatch: 'full'
   }
 ];
