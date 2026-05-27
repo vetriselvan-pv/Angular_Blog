@@ -1,0 +1,169 @@
+<div
+  class="app-shell"
+  [class.menu-open]="isMenuOpen()"
+  [class.standalone-mode]="isStandaloneScreen()"
+  [class.write-mode]="isWriteScreen()"
+  [class.theme-light]="theme() === 'light'"
+  [class.theme-dark]="theme() === 'dark'"
+>
+  <header class="app-header">
+    @if (!isStandaloneScreen()) {
+      <button
+        type="button"
+        class="menu-toggle"
+        (click)="toggleMenu()"
+        [attr.aria-expanded]="isMenuOpen()"
+        aria-controls="app-menu"
+        aria-label="Toggle menu"
+      >
+        <span class="menu-icon" aria-hidden="true">☰</span>
+        <span class="sr-only">Menu</span>
+      </button>
+
+      <div class="search-wrap">
+        <input
+          id="docs-search"
+          type="search"
+          class="search-input"
+          [value]="searchQuery()"
+          (input)="onSearch($event)"
+          placeholder="Search docs"
+          aria-label="Search documentation"
+        />
+      </div>
+    } @else {
+      <div class="write-header-title">{{ standaloneTitle() }}</div>
+      <div></div>
+    }
+
+    <div class="header-brand">
+      <a
+        routerLink="/write"
+        class="write-link"
+        aria-label="Open write screen"
+        title="Open write screen"
+      >
+        <svg
+          class="write-svg"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          aria-hidden="true"
+        >
+          <path
+            d="M4 20h4l10-10a1.4 1.4 0 0 0 0-2l-2-2a1.4 1.4 0 0 0-2 0L4 16v4Z"
+            stroke="currentColor"
+            stroke-width="1.8"
+            stroke-linejoin="round"
+          />
+          <path d="m13 7 4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+        </svg>
+      </a>
+      <button
+        type="button"
+        class="theme-toggle"
+        (click)="toggleTheme()"
+        [attr.aria-label]="themeLabel()"
+        [attr.title]="themeLabel()"
+      >
+        @if (theme() === 'dark') {
+          <svg
+            class="theme-svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+          >
+            <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.8" />
+            <path d="M12 2.5V5.2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+            <path d="M12 18.8V21.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+            <path
+              d="M5.28 5.28L7.2 7.2"
+              stroke="currentColor"
+              stroke-width="1.8"
+              stroke-linecap="round"
+            />
+            <path
+              d="M16.8 16.8L18.72 18.72"
+              stroke="currentColor"
+              stroke-width="1.8"
+              stroke-linecap="round"
+            />
+            <path d="M2.5 12H5.2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+            <path d="M18.8 12H21.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+            <path
+              d="M5.28 18.72L7.2 16.8"
+              stroke="currentColor"
+              stroke-width="1.8"
+              stroke-linecap="round"
+            />
+            <path
+              d="M16.8 7.2L18.72 5.28"
+              stroke="currentColor"
+              stroke-width="1.8"
+              stroke-linecap="round"
+            />
+          </svg>
+        } @else {
+          <svg
+            class="theme-svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+          >
+            <path
+              d="M20.15 14.62A8 8 0 1 1 9.38 3.85a7 7 0 1 0 10.77 10.77Z"
+              stroke="currentColor"
+              stroke-width="1.8"
+              stroke-linejoin="round"
+            />
+          </svg>
+        }
+      </button>
+    </div>
+  </header>
+
+  <div class="app-body">
+    @if (!isStandaloneScreen()) {
+      <aside id="app-menu" class="app-menu" aria-label="Overall menu">
+        <nav>
+          <ul>
+            @for (doc of filteredDocs(); track doc.id) {
+              <li>
+                <a
+                  [routerLink]="'/docs/' + doc.id"
+                  routerLinkActive="active-link"
+                  [routerLinkActiveOptions]="{ exact: true }"
+                  (click)="closeMenu()"
+                >
+                  {{ doc.title }}
+                </a>
+              </li>
+            }
+          </ul>
+        </nav>
+
+        @if (filteredDocs().length === 0) {
+          <p class="menu-empty">No matching topics.</p>
+        }
+      </aside>
+    }
+
+    <main class="content-panel" id="main-content">
+      <router-outlet></router-outlet>
+    </main>
+
+    @if (!isStandaloneScreen()) {
+      <button
+        type="button"
+        class="menu-overlay"
+        [class.visible]="isMenuOpen()"
+        (click)="closeMenu()"
+        aria-label="Close menu"
+        [attr.aria-hidden]="!isMenuOpen()"
+        [attr.tabindex]="isMenuOpen() ? 0 : -1"
+      ></button>
+    }
+  </div>
+</div>

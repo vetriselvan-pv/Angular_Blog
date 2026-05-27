@@ -1,0 +1,71 @@
+:host {
+  display: block;
+  height: 100%;
+}
+
+.login-page {
+  height: 100%;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+}
+
+.login-card {
+  width: min(420px, 100%);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background-color: var(--surface);
+  padding: 1.2rem;
+}
+
+.login-card h1 {
+  margin: 0;
+  font-size: 1.4rem;
+  color: var(--text-main);
+}
+
+.login-subtitle {
+  margin: 0.4rem 0 1rem;
+  color: var(--text-muted);
+}
+
+.status-text {
+  margin: 0;
+  color: var(--text-muted);
+}
+
+.google-btn-container {
+  min-height: 44px;
+}
+
+.error-text {
+  margin: 0.9rem 0 0;
+  color: #b91c1c;
+  font-weight: 600;
+}
+
+.user-preview {
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  border-top: 1px solid var(--border);
+  padding-top: 0.8rem;
+}
+
+.profile-pic {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 999px;
+}
+
+.user-name,
+.user-email {
+  margin: 0;
+  color: var(--text-main);
+}
+
+.user-email {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}

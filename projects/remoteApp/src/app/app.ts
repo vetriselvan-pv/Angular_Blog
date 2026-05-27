@@ -9,7 +9,11 @@ import { RouterOutlet } from '@angular/router';
   styleUrl: './app.css',
 })
 export class App {
+<<<<<<< HEAD
   protected readonly title = signal('remoteApp');
 
 
+=======
+  readonly title = signal('remoteApp');
+>>>>>>> origin/main
 }

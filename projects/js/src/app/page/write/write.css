@@ -1,0 +1,89 @@
+:host {
+  display: block;
+  height: 100%;
+}
+
+.write-page {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.write-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.write-title {
+  margin: 0;
+  font-size: 1.2rem;
+  color: var(--text-main);
+}
+
+.submit-btn {
+  border: 1px solid var(--border);
+  background-color: var(--surface);
+  color: var(--text-main);
+  border-radius: 6px;
+  padding: 0.4rem 0.8rem;
+  font-weight: 600;
+}
+
+.write-layout {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.8rem;
+}
+
+.write-pane {
+  border: 1px solid var(--border);
+  background-color: var(--surface);
+  border-radius: 8px;
+  padding: 0.75rem;
+  min-height: 0;
+  overflow: auto;
+}
+
+.pane-title {
+  margin: 0 0 0.65rem;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+}
+
+.markdown-input {
+  width: 100%;
+  height: calc(100% - 1.8rem);
+  min-height: 260px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 0.65rem;
+  resize: none;
+  background-color: var(--surface-soft);
+  color: var(--text-main);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono',
+    'Courier New', monospace;
+}
+
+.preview-pane .markdown-view {
+  max-width: none;
+}
+
+.submit-message {
+  margin: 0;
+  color: var(--link);
+  font-weight: 600;
+}
+
+@media (max-width: 900px) {
+  .write-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .markdown-input {
+    min-height: 220px;
+  }
+}
